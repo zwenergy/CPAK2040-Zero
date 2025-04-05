@@ -79,7 +79,6 @@ This is currently still in **experimental mode**.
 To enter USB write mode, hold the BOOTSEL or the additional switch button long (>2 seconds), let go shortly, then again hold it long (**AFTER** plugging in via USB).
 This enables USB write mode, which registers the CPAK2040 as a mass storage device.
 In this mode, only the current chosen VCP is visible and named "MEMPAK.MPK".
-**IMPORTANT: Wait 5 seconds after mounting the USB drive before continuing.**
 In order to replace this VCP, rename the memory pak file to be written to the CPAK2040 also to "MEMPAK.MPK" and copy it to the CPAK2040 drive (so it replaces the file on the drive).
 After writing, the CPAK2040 should automatically disconnect and restart, showing the current chosen VCP via the blinking LED.
 
