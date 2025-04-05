@@ -25,7 +25,7 @@ Using regular HASL is not recommended, as the PCB contacts quickly wear down, wh
 ## Soldering up the RP2040-Zero Board
 We do not only make use of the RP2040-Zero board's castellated edges, but also the small contact pads on the back.
 These pads are rather small, so make sure to align the board correctly, such that the VIAs of the PCB line up with the pads.
-It can also be helpful to pre-tin the RP2040-Zero's additional pad with a **thin** layer.
+It can also be helpful to pre-tin the RP2040-Zero's additional pad with a **thin** layer before actually soldering the pads via the through-holes.
 
 <img src="./assets/backsolder.jpg" alt="drawing" width="600"/>
 
