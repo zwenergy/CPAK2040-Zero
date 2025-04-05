@@ -1,6 +1,8 @@
 # CPAK2040-Zero
 An RP2040-based controller pak for the N64 in a small form factor.
 
+<img src="./assets/cpak2040_zero.png" alt="drawing" width="600"/>
+
 ## Overview
 The main idea of CPAK2040 is to a have a simple, cheap and easily DIY-able controller pak alternative for the N64 which is non-volatile (meaning not relying on a battery to keep the controller pak data like the original based on SRAM). 
 For this, an RP2040-Zero board is used, as it is widely available, cheap and easy to solder even for beginners.
@@ -20,8 +22,18 @@ The Gerber files to create the PCB can be found in the "gerber" folder.
 You need to order the PCB with **1.2 mm thickness**, **ENIG or hard gold** and **bevelled edges** at the connector.
 Using regular HASL is not recommended, as the PCB contacts quickly wear down, while solder may also rub onto the controller's connection pins.
 
+## Soldering up the RP2040-Zero Board
+We do not only make use of the RP2040-Zero board's castellated edges, but also the small contact pads on the back.
+These pads are rather small, so make sure to align the board correctly, such that the VIAs of the PCB line up with the pads.
+It can also be helpful to pre-tin the RP2040-Zero's additional pad with a **thin** layer.
+
+<img src="./assets/backsolder.jpg" alt="drawing" width="600"/>
+
+
 ## Setting up the RP2040-Zero
 Hold down the BOOT button, connect the RP2040-Zero via USB to your computer and drag'n'drop the .UF2 from the latest release onto the RP2040-Zero device.
+
+Once flashed with the FW, you can also use the additional switch of the PCB as a BOOT button to update the firmware, so that you do not need to open the case.
 
 ## Using the CPAK2040
 If you're using the CPAK2040 without the 3D printed case, make sure that you orientate the PCB correctly.
@@ -55,7 +67,7 @@ Note that many games will not reload the controller pak content, unless they sen
 The simple "hold button to increase VCP index" is not ideal, especially with a larger number of VCPs.
 
 ### Backup Controller Pak Data
-When plugging in the CPAK2040 via USB to a computer, the BOOTSEL button long (>2 seconds) and let go (**AFTER** plugging in via USB).
+When plugging in the CPAK2040 via USB to a computer, press the BOOTSEL button or the additional switch long (>2 seconds) and let go (**AFTER** plugging in via USB).
 This enables USB read mode, which registers the CPAK2040 as a mass storage device and all the controller paks can be copied off the device (this is implemented using TinyUSB).
 There is currently no way to manually exit the USB mode again, so the CPAK2040 needs to be unplugged before used again normally.
 
@@ -64,7 +76,7 @@ This is currently still in **experimental mode**.
 
 **ALWAYS MAKE A BACKUP OF YOUR SAVE GAMES!**
 
-To enter USB write mode, hold the BOOTSEL button long (>2 seconds), let go shortly, then again hold it long (**AFTER** plugging in via USB).
+To enter USB write mode, hold the BOOTSEL or the additional switch button long (>2 seconds), let go shortly, then again hold it long (**AFTER** plugging in via USB).
 This enables USB write mode, which registers the CPAK2040 as a mass storage device.
 In this mode, only the current chosen VCP is visible and named "MEMPAK.MPK".
 **IMPORTANT: Wait 5 seconds after mounting the USB drive before continuing.**
@@ -73,7 +85,8 @@ After writing, the CPAK2040 should automatically disconnect and restart, showing
 
 
 ## Shell
-A first version of a 3D printable shell can be found in the STL folder.
+A first version of a 3D printable shell can be found [here](https://www.printables.com/model/1255674-cpak2040-zero-shell).
+It's a remix of JTG_16's shell for FRAM controller pak PCBs which can be found [here](https://www.thingiverse.com/thing:6784987).
 
 ## Disclaimer
 **Use the files and/or schematics to build your own board at your own risk**.
