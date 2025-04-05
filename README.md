@@ -6,7 +6,7 @@ The main idea of CPAK2040 is to a have a simple, cheap and easily DIY-able contr
 For this, an RP2040-Zero board is used, as it is widely available, cheap and easy to solder even for beginners.
 
 A regular RP2040-Zero board has a 2 MB Flash, whereas a single N64 controller pak has a capacity of 32 kB.
-The software running on the Pico to emulate the controller pak only takes up a fraction of the available Flash memory, hence quite many "virtual controller paks" can be stored in the Pico's Flash.
+The software running on the RP2040 to emulate the controller pak only takes up a fraction of the available Flash memory, hence quite many "virtual controller paks" can be stored in the Pico's Flash.
 By default, the CPAK2040 holds 10 "virtual controller paks", as a more efficient navigating method needs to implemented to better use a larger number of controller paks.
 
 **DO NOT CONNECT VIA USB WHEN PLUGGED IN A CONTROLLER!**
@@ -20,12 +20,11 @@ The Gerber files to create the PCB can be found in the "gerber" folder.
 You need to order the PCB with **1.2 mm thickness**, **ENIG or hard gold** and **bevelled edges** at the connector.
 Using regular HASL is not recommended, as the PCB contacts quickly wear down, while solder may also rub onto the controller's connection pins.
 
-## Setting up the Pi Pico
-Hold down the BOOTSEL button, connect the Pi Pico via USB to your computer and drag'n'drop the .UF2 from the latest release onto the Pi Pico device.
+## Setting up the RP2040-Zero
+Hold down the BOOT button, connect the RP2040-Zero via USB to your computer and drag'n'drop the .UF2 from the latest release onto the RP2040-Zero device.
 
 ## Using the CPAK2040
 If you're using the CPAK2040 without the 3D printed case, make sure that you orientate the PCB correctly.
-It's noted on the PCB, which side should face the front of the controller ("controller cable side") and which to the back of the controller ("Z-trigger side").
 
 Initially, all virtual controller paks will be "corrupted", as they are not formatted as a controller pak data.
 Start a game using a controller pak and hold START during the startup, this will bring up the controller pak manager.
@@ -35,7 +34,7 @@ Here, you can typically "repair" aka format the current virtual controller pak.
 The current controller pak's content is hold in the RP2040's SRAM.
 When a write the controller pak happens, the updated contents are stored into the Flash.
 In order to avoid unneccassary writes to the Flash, the Flash content is not directly updated, but a small timeout of some seconds is introduced, such that multiple writes can be combined into a single Flash rewrite.
-This is signaled using the Pico's LED.
+This is signaled using the RP2040-Zero's LED.
 When then LED is on, this means that there is fresh data in the controller pak which is not written back to the Flash yet.
 **Do not unplug the controller pak, while the LED is on, or otherwise you risk losing the latest controller pak data or data corruption.**
 
@@ -54,7 +53,6 @@ The current VCP index is stored into the Flash after 2s not changing it, so also
 Note that many games will not reload the controller pak content, unless they sense that the controller pak is physically removed and plugged back in again.
 
 The simple "hold button to increase VCP index" is not ideal, especially with a larger number of VCPs.
-I am planning on adding a better navigating scheme.
 
 ### Backup Controller Pak Data
 When plugging in the CPAK2040 via USB to a computer, the BOOTSEL button long (>2 seconds) and let go (**AFTER** plugging in via USB).
