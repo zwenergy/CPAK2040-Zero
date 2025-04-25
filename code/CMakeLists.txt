@@ -7,9 +7,6 @@ set(BOARD pico_sdk)
 
 include(pico_sdk_import.cmake)
 
-# Run from SRAM
-set(PICO_DEFAULT_BINARY_TYPE copy_to_ram)
-
 set(PROJECT CPAK2040)
 
 project(${PROJECT})
